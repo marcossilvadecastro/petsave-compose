@@ -1,0 +1,180 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'dagger.hilt.android.plugin'
+
+android {
+  compileSdkVersion rootProject.ext.compileSdkVersion
+
+  defaultConfig {
+    applicationId "com.raywenderlich.android.petsave"
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "com.raywenderlich.android.petsave.HiltTestRunner"
+
+    javaCompileOptions {
+      annotationProcessorOptions {
+        arguments += [
+                "room.schemaLocation":"$projectDir/schemas".toString(),
+                "room.incremental":"true",
+                "room.expandProjection":"true"]
+      }
+    }
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  kotlinOptions {
+    jvmTarget = JavaVersion.VERSION_1_8.toString()
+    useIR = true
+  }
+
+  buildFeatures {
+    viewBinding true
+    compose true
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion rootProject.composeVersion
+  }
+
+  testOptions {
+    unitTests {
+      includeAndroidResources = true
+    }
+  }
+
+  sourceSets {
+    androidTest {
+      assets.srcDirs = ["src/debug/assets"]
+    }
+  }
+
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+  // Kotlin
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+
+  // Support Libraries
+  implementation "androidx.appcompat:appcompat:$appcompat_version"
+  implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+
+  // Testing Dependencies
+  testImplementation "junit:junit:$junit_version"
+  testImplementation "com.google.truth:truth:$google_truth_version"
+  testImplementation "org.mockito:mockito-core:$mockito_version"
+  testImplementation "org.robolectric:robolectric:$robolectric_version"
+  androidTestImplementation "com.google.truth:truth:$google_truth_version"
+  androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
+  androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+  androidTestImplementation "androidx.arch.core:core-testing:$androidx_core_testing_version"
+
+  testImplementation("com.squareup.okhttp3:mockwebserver:$mockwebserver_version")
+  androidTestImplementation("com.squareup.okhttp3:mockwebserver:$mockwebserver_version")
+
+  androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+  testImplementation "com.google.dagger:hilt-android-testing:$hilt_version"
+  kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+  kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+  testAnnotationProcessor "com.google.dagger:hilt-android-compiler:$hilt_version"
+  androidTestAnnotationProcessor "com.google.dagger:hilt-android-compiler:$hilt_version"
+  kaptTest "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+  // When using Kotlin.
+  kapt 'androidx.hilt:hilt-compiler:1.0.0'
+  implementation 'androidx.hilt:hilt-navigation-fragment:1.0.0'
+  implementation "androidx.fragment:fragment-ktx:1.2.5"
+  implementation "androidx.activity:activity-ktx:1.1.0"
+
+
+  // TUTORIAL DEPENDENCIES HERE
+
+  // Modules
+  implementation project(":logging")
+
+  // Network
+  implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+  implementation "com.squareup.retrofit2:converter-moshi:$moshi_converter_version"
+  implementation "com.squareup.okhttp3:okhttp:$okHttp_version"
+  implementation "com.squareup.okhttp3:logging-interceptor:$okHttp_version"
+  implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
+  kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+  // Cache
+  implementation "androidx.room:room-runtime:$room_version"
+  implementation "androidx.room:room-ktx:$room_version"
+  implementation "androidx.room:room-rxjava2:$room_version"
+
+  kapt "androidx.room:room-compiler:$room_version"
+
+  testImplementation "androidx.room:room-testing:$room_version"
+
+  // Concurrency
+  implementation "io.reactivex.rxjava2:rxjava:$rxjava_version"
+  implementation "io.reactivex.rxjava2:rxkotlin:$rxkotlin_version"
+  implementation "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
+
+  // DI
+  implementation "com.google.dagger:hilt-android:$hilt_version"
+  kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+  implementation "androidx.hilt:hilt-lifecycle-viewmodel:$androidx_hilt_version"
+  kapt "androidx.hilt:hilt-compiler:$androidx_hilt_version"
+
+
+  implementation "com.google.android.material:material:$material_version"
+
+  // Navigation
+  implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+  implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+  androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+
+  // Utils
+  implementation "com.jakewharton.threetenabp:threetenabp:$threetenabp_version"
+
+  debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
+
+  // Compose
+  implementation "androidx.compose.runtime:runtime:$rootProject.composeVersion"
+  implementation "androidx.compose.ui:ui:$rootProject.composeVersion"
+  implementation "androidx.compose.foundation:foundation:$rootProject.composeVersion"
+  implementation "androidx.compose.foundation:foundation-layout:$rootProject.composeVersion"
+  implementation "androidx.compose.material:material:$rootProject.composeVersion"
+  implementation "androidx.compose.runtime:runtime-livedata:$rootProject.composeVersion"
+  implementation "androidx.compose.ui:ui-tooling:$rootProject.composeVersion"
+  implementation "com.google.android.material:compose-theme-adapter:$rootProject.composeVersion"
+
+  //Coil Image
+  implementation "io.coil-kt:coil-compose:1.4.0"
+
+  //Navigating with Compose
+  implementation "androidx.navigation:navigation-compose:2.4.0-rc01"
+  implementation 'androidx.hilt:hilt-navigation-compose:1.0.0-rc01'
+
+  implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1'
+  implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1'
+
+  implementation "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07"
+  implementation "com.google.accompanist:accompanist-flowlayout:0.17.0"
+
+
+}
