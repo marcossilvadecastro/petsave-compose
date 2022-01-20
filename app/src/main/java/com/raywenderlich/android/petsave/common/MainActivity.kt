@@ -19,6 +19,7 @@ import com.raywenderlich.android.petsave.animalsnearyou.presentation.ListAnimals
 import com.raywenderlich.android.petsave.common.presentation.navigation.BottomNavItem
 import com.raywenderlich.android.petsave.common.presentation.navigation.BottomNavigation
 import com.raywenderlich.android.petsave.common.presentation.navigation.TopAppBar
+import com.raywenderlich.android.petsave.search.presentation.AnimalsSearchHeader
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -38,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                 bottomBar = { BottomNavigation(navController = navController) }
             ) {
 
-                NavHost(navController = navController, startDestination = BottomNavItem.NearYou.route) {
+                NavHost(navController = navController, startDestination = BottomNavItem.Search.route) {
 
                     composable(BottomNavItem.NearYou.route) {
 
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     composable(BottomNavItem.Search.route) {
-                       TODO()
+                        AnimalsSearchContent()
                     }
                 }
             }
@@ -71,6 +72,19 @@ class MainActivity : AppCompatActivity() {
             ListAnimalsNearYou()
         }
     }
+
+    @Composable
+    fun AnimalsSearchContent(){
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 64.dp)
+        ){
+            AnimalsSearchHeader()
+        }
+    }
+
+
 }
 
 
