@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
@@ -13,10 +14,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
+import coil.size.OriginalSize
+import coil.size.Scale
 import com.raywenderlich.android.petsave.R
 import com.raywenderlich.android.petsave.common.presentation.model.UIAnimal
 
@@ -37,14 +40,33 @@ fun AnimalItem(animalUI: UIAnimal) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.dog_placeholder),
-                contentDescription = "Animal to adopt"
+
+            val painter = rememberImagePainter(
+                data = animalUI.photo,
+                builder = {
+                    crossfade(true)
+                    placeholder(animalUI.imagePlaceHolder)
+                    size(OriginalSize)
+                    scale(Scale.FIT)
+                    error(animalUI.imagePlaceHolder)
+                }
             )
+
+            Image(
+                painter = painter,
+                contentDescription = "Animal to adopt",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(4.dp),
+                contentScale = ContentScale.Fit
+            )
+
             Text(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .padding(vertical = 8.dp)
-                    .padding(horizontal = 4.dp),
+                    .padding(horizontal = 8.dp)
+                    .align(alignment = Alignment.CenterHorizontally),
                 text = animalUI.name,
                 style = MaterialTheme.typography.body1,
                 color = MaterialTheme.colors.primaryVariant
@@ -60,7 +82,8 @@ fun AnimalItemPreview() {
         animalUI = UIAnimal(
             1L,
             "Caramelo",
-            "https://dl5zpyw5k3jeb.cloudfront.net//photos//pets//54298546//1//?bust=1642629363\\u0026width=300"
+            "https://dl5zpyw5k3jeb.cloudfront.net//photos//pets//54298546//1//?bust=1642629363\\u0026width=300",
+            "dog"
         )
     )
 }

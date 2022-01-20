@@ -34,8 +34,15 @@
 
 package com.raywenderlich.android.petsave.common.presentation.model
 
+import com.raywenderlich.android.petsave.R
+
 data class UIAnimal(
     val id: Long,
     val name: String,
-    val photo: String
-)
+    val photo: String,
+    val type:  String
+) {
+
+    val imagePlaceHolder : Int
+        get() = if(type.equals("cat", true)) R.drawable.cat_derp else R.drawable.dog_placeholder
+}

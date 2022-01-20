@@ -8,6 +8,7 @@ class UiAnimalMapper @Inject constructor() : UiMapper<Animal, UIAnimal> {
 
     override fun mapToView(input: Animal): UIAnimal {
         return UIAnimal(
+            type = input.type,
             id = input.id,
             name = input.name,
             photo = input.media.getFirstSmallestAvailablePhoto()
