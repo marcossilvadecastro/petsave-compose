@@ -2,10 +2,7 @@ package com.raywenderlich.android.petsave.animalsnearyou.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -35,8 +32,10 @@ fun AnimalItem(animalUI: UIAnimal) {
     ) {
         Column(
             modifier = Modifier
+                .border(2.dp, MaterialTheme.colors.primary)
                 .clip(RoundedCornerShape(8.dp))
-                .border(1.5.dp, MaterialTheme.colors.primary),
+                .fillMaxWidth()
+                .padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
@@ -55,15 +54,12 @@ fun AnimalItem(animalUI: UIAnimal) {
             Image(
                 painter = painter,
                 contentDescription = "Animal to adopt",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(4.dp),
+                modifier = Modifier.fillMaxWidth(),
                 contentScale = ContentScale.Fit
             )
 
             Text(
                 modifier = Modifier
-                    .fillMaxWidth()
                     .padding(vertical = 8.dp)
                     .padding(horizontal = 8.dp)
                     .align(alignment = Alignment.CenterHorizontally),
