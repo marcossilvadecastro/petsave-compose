@@ -4,8 +4,13 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -36,7 +41,14 @@ class MainActivity : AppCompatActivity() {
                 NavHost(navController = navController, startDestination = BottomNavItem.NearYou.route) {
 
                     composable(BottomNavItem.NearYou.route) {
-                        AnimalsNearYourContent()
+
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(bottom = 8.dp)
+                        ){
+                            AnimalsNearYourContent()
+                        }
                     }
 
                     composable(BottomNavItem.Search.route) {
@@ -51,7 +63,13 @@ class MainActivity : AppCompatActivity() {
     @ExperimentalFoundationApi
     @Composable
     fun AnimalsNearYourContent() {
-        ListAnimalsNearYou()
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 64.dp)
+        ){
+            ListAnimalsNearYou()
+        }
     }
 }
 
