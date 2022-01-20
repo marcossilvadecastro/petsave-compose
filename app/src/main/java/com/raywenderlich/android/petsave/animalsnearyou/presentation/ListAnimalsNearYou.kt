@@ -45,7 +45,15 @@ fun ListAnimalsNearYou(
         ) {
 
             val animals = state.value.animals
+
+            val lastIndex = animals.lastIndex
+
+
             items(animals.size) { i ->
+
+                if(i == lastIndex){
+                    viewModel.onEvent(AnimalsNearYouEvent.RequestMoreAnimals)
+                }
                 AnimalItem(animalUI = animals[i])
             }
         }
