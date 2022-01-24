@@ -27,7 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
 
-    @ExperimentalFoundationApi
+    @OptIn(ExperimentalFoundationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme)
@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     @ExperimentalFoundationApi
     @Composable
