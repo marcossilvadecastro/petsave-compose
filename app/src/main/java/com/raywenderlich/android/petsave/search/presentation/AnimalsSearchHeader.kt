@@ -2,10 +2,7 @@ package com.raywenderlich.android.petsave.search.presentation
 
 import android.widget.Space
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -17,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 
+@ExperimentalMaterialApi
 @Composable
 fun AnimalsSearchHeader() {
     Column(
@@ -63,13 +61,26 @@ fun AnimalsSearchHeader() {
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-
+            DropDown()
+            DropDown()
         }
 
 
     }
 }
 
+@ExperimentalMaterialApi
+@Composable
+fun DropDown() {
+    ExposedDropdownMenuBox(
+        expanded = false,
+        onExpandedChange = {}
+    ) {
+
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
 @Preview
 @Composable
 fun PreviewAnimalsSearchHeader() {
