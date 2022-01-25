@@ -5,7 +5,7 @@ import com.raywenderlich.android.petsave.common.domain.model.animal.details.Age
 import com.raywenderlich.android.petsave.common.domain.model.animal.details.AnimalWithDetails
 import com.raywenderlich.android.petsave.common.domain.model.pagination.PaginatedAnimals
 import com.raywenderlich.android.petsave.common.domain.model.search.SearchParameters
-import com.raywenderlich.android.petsave.search.domain.use_cases.model.SearchResults
+import com.raywenderlich.android.petsave.search.domain.model.SearchResults
 import io.reactivex.Flowable
 
 interface AnimalRepository {

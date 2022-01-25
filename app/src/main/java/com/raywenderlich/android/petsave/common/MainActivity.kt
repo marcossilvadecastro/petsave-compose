@@ -16,7 +16,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.raywenderlich.android.petsave.R
-import com.raywenderlich.android.petsave.animalsnearyou.presentation.ListAnimalsNearYou
+import com.raywenderlich.android.petsave.animalsnearyou.presentation.ShowListAnimals
 import com.raywenderlich.android.petsave.common.presentation.navigation.BottomNavItem
 import com.raywenderlich.android.petsave.common.presentation.navigation.BottomNavigation
 import com.raywenderlich.android.petsave.common.presentation.navigation.TopAppBar
@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                 .fillMaxSize()
                 .padding(bottom = 64.dp)
         ){
-            ListAnimalsNearYou()
+            ShowListAnimals()
         }
     }
 

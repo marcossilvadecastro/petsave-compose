@@ -2,7 +2,7 @@ package com.raywenderlich.android.petsave.search.domain.use_cases
 
 import com.raywenderlich.android.petsave.common.domain.model.animal.details.Age
 import com.raywenderlich.android.petsave.common.domain.repositories.AnimalRepository
-import com.raywenderlich.android.petsave.search.domain.use_cases.model.SearchFilters
+import com.raywenderlich.android.petsave.search.domain.model.SearchFilters
 import java.util.*
 import javax.inject.Inject
 

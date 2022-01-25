@@ -2,8 +2,6 @@ package com.raywenderlich.android.petsave.search.presentation
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.raywenderlich.android.logging.Logger
@@ -17,7 +15,7 @@ import com.raywenderlich.android.petsave.common.utils.createExceptionHandler
 import com.raywenderlich.android.petsave.search.domain.use_cases.GetSearchFilters
 import com.raywenderlich.android.petsave.search.domain.use_cases.SearchAnimals
 import com.raywenderlich.android.petsave.search.domain.use_cases.SearchAnimalsRemotely
-import com.raywenderlich.android.petsave.search.domain.use_cases.model.SearchResults
+import com.raywenderlich.android.petsave.search.domain.model.SearchResults
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

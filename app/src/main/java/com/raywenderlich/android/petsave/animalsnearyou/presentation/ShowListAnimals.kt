@@ -5,9 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -17,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.raywenderlich.android.petsave.common.domain.model.pagination.Pagination
+import com.raywenderlich.android.petsave.common.presentation.component.GridListAnimals
 
 private const val ITEMS_PER_ROW = 2
 
@@ -27,7 +24,7 @@ object ListConstants {
 
 @ExperimentalFoundationApi
 @Composable
-fun ListAnimalsNearYou(
+fun ShowListAnimals(
     viewModel: AnimalsNearYouViewModel = hiltViewModel()
 ) {
 
@@ -36,29 +33,14 @@ fun ListAnimalsNearYou(
     val state = viewModel.state
     Box(modifier = Modifier.fillMaxSize()) {
 
-        val listState = rememberLazyListState()
+        val animals = state.value.animals
+        GridListAnimals(animals = animals) { animal, index ->
 
-        LazyVerticalGrid(
-            modifier = Modifier.fillMaxSize(),
-            cells = GridCells.Fixed(ListConstants.ITEMS_PER_ROW),
-            state = listState
-        ) {
-
-            val animals = state.value.animals
-
-            val lastIndex = animals.lastIndex
-
-
-            items(animals.size) { i ->
-
-                if(i == lastIndex){
-                    viewModel.onEvent(AnimalsNearYouEvent.RequestMoreAnimals)
-                }
-                AnimalItem(animalUI = animals[i])
+            if (index == animals.lastIndex) {
+                viewModel.onEvent(AnimalsNearYouEvent.RequestMoreAnimals)
             }
+            AnimalItem(animalUI = animal)
         }
-
-
 
         state.value.failure?.getContentIfNotHandled()?.let {
             Text(

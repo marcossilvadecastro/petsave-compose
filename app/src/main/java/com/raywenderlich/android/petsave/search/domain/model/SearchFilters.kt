@@ -1,4 +1,4 @@
-package com.raywenderlich.android.petsave.search.domain.use_cases.model
+package com.raywenderlich.android.petsave.search.domain.model
 
 data class SearchFilters(
     val ages: List<String>,

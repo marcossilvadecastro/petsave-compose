@@ -136,10 +136,3 @@ fun DropDown(title : String, options: List<String>) {
         }
     }
 }
-
-@OptIn(ExperimentalMaterialApi::class, ExperimentalFoundationApi::class)
-@Preview
-@Composable
-fun PreviewAnimalsSearchHeader() {
-    AnimalsSearch()
-}

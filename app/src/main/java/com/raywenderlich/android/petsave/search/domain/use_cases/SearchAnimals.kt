@@ -2,7 +2,7 @@ package com.raywenderlich.android.petsave.search.domain.use_cases
 
 import com.raywenderlich.android.petsave.common.domain.model.search.SearchParameters
 import com.raywenderlich.android.petsave.common.domain.repositories.AnimalRepository
-import com.raywenderlich.android.petsave.search.domain.use_cases.model.SearchResults
+import com.raywenderlich.android.petsave.search.domain.model.SearchResults
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Observable
