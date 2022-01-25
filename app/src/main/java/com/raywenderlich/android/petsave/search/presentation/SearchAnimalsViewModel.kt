@@ -1,5 +1,7 @@
 package com.raywenderlich.android.petsave.search.presentation
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -34,9 +36,9 @@ class SearchAnimalsViewModel @Inject constructor(
     private val compositeDisposable: CompositeDisposable
 ) : ViewModel() {
 
-    val state: LiveData<SearchViewState> get() = _state
+    val state: State<SearchViewState> get() = _state
 
-    private val _state: MutableLiveData<SearchViewState> = MutableLiveData()
+    private val _state = mutableStateOf(SearchViewState())
     private val querySubject = BehaviorSubject.create<String>()
     private val ageSubject = BehaviorSubject.createDefault("")
     private val typeSubject = BehaviorSubject.createDefault("")

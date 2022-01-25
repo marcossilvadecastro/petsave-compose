@@ -20,7 +20,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @ExperimentalFoundationApi
 @ExperimentalMaterialApi
 @Composable
-fun AnimalsSearch() {
+fun AnimalsSearch(
+    viewModel: SearchAnimalsViewModel = hiltViewModel()
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -28,6 +30,9 @@ fun AnimalsSearch() {
         verticalArrangement = Arrangement.Top
     ) {
 
+        viewModel.onEvent(SearchEvent.PrepareForSearch)
+
+        val state = viewModel.state.value!!
         val query = remember {
             mutableStateOf(TextFieldValue())
         }
@@ -47,8 +52,9 @@ fun AnimalsSearch() {
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            DropDown(listOf("Option 1", "Option 2"))
-            DropDown(listOf("Option 3", "Option 3"))
+
+            DropDown("Types",state.typeFilterValues.getContentIfNotHandled() ?: listOf())
+            DropDown("Age", state.ageFilterValues.getContentIfNotHandled() ?: listOf())
         }
     }
 }
@@ -80,10 +86,10 @@ private fun SearchBar(query: MutableState<TextFieldValue>) {
 
 @ExperimentalMaterialApi
 @Composable
-fun DropDown(options: List<String>) {
+fun DropDown(title : String, options: List<String>) {
 
     var expanded by remember { mutableStateOf(false) }
-    var selectedOptionText by remember { mutableStateOf(options.first()) }
+    var selectedOptionText by remember { mutableStateOf(options.firstOrNull()) }
 
     ExposedDropdownMenuBox(
         expanded = expanded,
@@ -96,8 +102,9 @@ fun DropDown(options: List<String>) {
     ) {
 
         TextField(
+            label = { Text(title) },
             readOnly = true,
-            value = selectedOptionText,
+            value = selectedOptionText ?: "",
             onValueChange = { },
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(
