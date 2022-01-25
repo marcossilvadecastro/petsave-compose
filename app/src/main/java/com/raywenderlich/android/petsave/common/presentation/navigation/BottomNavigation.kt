@@ -1,23 +1,16 @@
 package com.raywenderlich.android.petsave.common.presentation.navigation
 
-import android.widget.Toast
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ComposeCompilerApi
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.raywenderlich.android.petsave.R
-import com.raywenderlich.android.petsave.animalsnearyou.presentation.AnimalsNearYouViewModel
 
 @Composable
 fun BottomNavigation(navController: NavController) {

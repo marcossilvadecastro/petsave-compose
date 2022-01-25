@@ -1,7 +1,6 @@
 package com.raywenderlich.android.petsave.search.presentation
 
 import android.R
-import android.widget.Space
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -10,19 +9,18 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.raywenderlich.android.petsave.animalsnearyou.presentation.ListAnimalsNearYou
+import androidx.hilt.navigation.compose.hiltViewModel
 
 
 @ExperimentalFoundationApi
 @ExperimentalMaterialApi
 @Composable
-fun AnimalsSearchHeader() {
+fun AnimalsSearch() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -52,14 +50,6 @@ fun AnimalsSearchHeader() {
             DropDown(listOf("Option 1", "Option 2"))
             DropDown(listOf("Option 3", "Option 3"))
         }
-
-        Spacer(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(8.dp)
-        )
-
-        ListAnimalsNearYou()
     }
 }
 
@@ -144,5 +134,5 @@ fun DropDown(options: List<String>) {
 @Preview
 @Composable
 fun PreviewAnimalsSearchHeader() {
-    AnimalsSearchHeader()
+    AnimalsSearch()
 }

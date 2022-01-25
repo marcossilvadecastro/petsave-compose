@@ -20,7 +20,7 @@ import com.raywenderlich.android.petsave.animalsnearyou.presentation.ListAnimals
 import com.raywenderlich.android.petsave.common.presentation.navigation.BottomNavItem
 import com.raywenderlich.android.petsave.common.presentation.navigation.BottomNavigation
 import com.raywenderlich.android.petsave.common.presentation.navigation.TopAppBar
-import com.raywenderlich.android.petsave.search.presentation.AnimalsSearchHeader
+import com.raywenderlich.android.petsave.search.presentation.AnimalsSearch
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -82,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                 .fillMaxSize()
                 .padding(bottom = 64.dp)
         ){
-            AnimalsSearchHeader()
+            AnimalsSearch()
         }
     }
 
