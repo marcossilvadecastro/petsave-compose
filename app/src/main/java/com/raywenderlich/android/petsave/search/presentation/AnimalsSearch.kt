@@ -176,7 +176,7 @@ fun DropDown(title: String, options: List<String>, onSelected: (item: String) ->
                         expanded = false
                         selectedOptionText?.takeIf {
                             it.isNotBlank()
-                        }?.run(onSelected)
+                        }?.let(onSelected)
                     }
                 ) {
                     Text(text = selectionOption)
