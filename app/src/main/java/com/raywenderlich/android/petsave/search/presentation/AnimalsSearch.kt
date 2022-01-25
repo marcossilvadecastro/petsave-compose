@@ -42,7 +42,7 @@ fun AnimalsSearch(
         viewModel.onEvent(SearchEvent.PrepareForSearch)
 
         val state = viewModel.state.value!!
-        SearchBar{query ->
+        SearchBar { query ->
             viewModel.onEvent(SearchEvent.QueryInput(query))
         }
 
@@ -60,8 +60,20 @@ fun AnimalsSearch(
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            DropDown("Types",state.typeFilterValues.getContentIfNotHandled() ?: listOf())
-            DropDown("Age", state.ageFilterValues.getContentIfNotHandled() ?: listOf())
+            DropDown(
+                "Types",
+                state.typeFilterValues.getContentIfNotHandled() ?: listOf(),
+                onSelected = {
+                    viewModel.onEvent(SearchEvent.TypeValueSelected(it))
+                }
+            )
+            DropDown(
+                "Age",
+                state.ageFilterValues.getContentIfNotHandled() ?: listOf(),
+                onSelected = {
+                    viewModel.onEvent(SearchEvent.AgeValueSelected(it))
+                }
+            )
         }
 
         Spacer(
@@ -120,7 +132,7 @@ private fun SearchBar(onSearch: (query: String) -> Unit) {
 
 @ExperimentalMaterialApi
 @Composable
-fun DropDown(title : String, options: List<String>) {
+fun DropDown(title: String, options: List<String>, onSelected: (item: String) -> Unit) {
 
     var expanded by remember { mutableStateOf(false) }
     var selectedOptionText by remember { mutableStateOf(options.firstOrNull()) }
@@ -162,6 +174,9 @@ fun DropDown(title : String, options: List<String>) {
                     onClick = {
                         selectedOptionText = selectionOption
                         expanded = false
+                        selectedOptionText?.takeIf {
+                            it.isNotBlank()
+                        }?.run(onSelected)
                     }
                 ) {
                     Text(text = selectionOption)
